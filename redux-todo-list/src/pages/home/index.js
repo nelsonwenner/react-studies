@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 
 import { connect } from 'react-redux';
-import { addTodo } from '../../actions/index';
+import { addTodo, toggleTodo } from '../../actions/index';
 
 
 class HomeContainer extends Component {
@@ -17,12 +17,17 @@ class HomeContainer extends Component {
     event.preventDefault();
 
     this.props.dispatch(addTodo(event.target.inputDataForm.value));
+    event.target.inputDataForm.value = '';
+  }
+
+  handlerToggleTodo(id) {
+    this.props.dispatch(toggleTodo(id));
   }
 
   render() {
 
     const { todos } = this.props;
-
+    
     return (
       <div>
         <form onSubmit={this.handlerAddTodo}>
@@ -33,7 +38,10 @@ class HomeContainer extends Component {
         <ul>
           {
             todos.map((todo) => (
-              <li key={todo.id} style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+              <li 
+                key={todo.id} style={{ textDecoration: todo.completed ? 'line-through' : 'none' }} 
+                onClick={() => this.handlerToggleTodo(todo.id)}>
+
                 { todo.text }
               </li>
             ))
