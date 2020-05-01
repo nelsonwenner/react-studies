@@ -2,39 +2,38 @@ import React, { Component } from 'react';
 import './style.css';
 
 import Counter from '../../components/counter/counter';
+import { connect } from 'react-redux';
+import { incr, decr } from '../../actions';
+
 
 class CounterContainer extends Component {
 
   constructor() {
     super();
 
-    this.state = {
-      counter: 0
-    }
-    
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
   }
 
   increment() {
-    this.setState({
-      counter: this.state.counter += 1
-    })
+    this.props.dispatch(incr());
   }
 
   decrement() {
-    this.setState({
-      counter: this.state.counter -= 1
-    })
+    this.props.dispatch(decr());
   }
-
+  
   render() {
-    const { counter } = this.state;
-
     return (
-      <Counter count={counter} increment={this.increment} decrement={this.decrement} />
+      <Counter count={this.props.counter} increment={this.increment} decrement={this.decrement} />
     )
   }
 }
 
-export default CounterContainer;
+const mapProps = (state) => {
+  return {
+    counter: state
+  }
+}
+
+export default connect(mapProps)(CounterContainer);

@@ -1,5 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import configureStore from './store/configureStore'
+import { Provider } from 'react-redux';
+import Routes from './routes/routes';
+import './style.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = configureStore();
+
+const jsx = (
+  <Provider store={store}>
+      <Routes />
+  </Provider>
+)
+
+ReactDOM.render(jsx, document.getElementById('root'));
