@@ -1,0 +1,16 @@
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.view-port {
+  height: 100vh;
+}
+
+.content-center {
+  justify-content: center;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
