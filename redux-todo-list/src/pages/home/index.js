@@ -3,6 +3,9 @@ import './style.css';
 
 import { connect } from 'react-redux';
 import { addTodo, toggleTodo } from '../../actions/index';
+import Form from '../../components/common/form/index';
+//import TodoList from '../../components/common/todo-list';
+//import Filter from '../../components/common/filter';
 
 
 class HomeContainer extends Component {
@@ -25,15 +28,12 @@ class HomeContainer extends Component {
   }
 
   render() {
-
+    console.log(this.props)
     const { todos } = this.props;
-    
+
     return (
       <div>
-        <form onSubmit={this.handlerAddTodo}>
-          <input type="text" name="inputDataForm"/>
-          <button type="submit">Adding</button>
-        </form>
+        <Form handlerAddTodo={this.handlerAddTodo} />
 
         <ul>
           {
@@ -59,7 +59,8 @@ class HomeContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state
+    todos: state.todo,
+    filters: state.filter
   }
 }
 
