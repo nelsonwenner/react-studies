@@ -7,14 +7,14 @@ import SearchCep from '../../components/common/search-cep'
 
 
 class HomeContainer extends Component {
-  
+
   constructor() {
     super();
   }
 
   render() {
     return (
-      <div>
+      <div className="container" style={{ paddingTop: 120 }}>
         <SearchCep />
       </div>
     )

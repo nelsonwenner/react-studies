@@ -41,13 +41,13 @@ class HomeContainer extends Component {
 
   render() {
     return (
-      <>
+      <div className="container" style={{ paddingTop: 120 }}>
 
         <Form handlerAddTodo={ this.handlerAddTodo } />
         <TodoList handlerToggleTodo={ this.handlerToggleTodo } />
         <Filter handlerFilter={ this.handlerFilterTodo } />
         
-      </>
+      </div>
     )
   }
 }
