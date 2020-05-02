@@ -7,6 +7,11 @@ import './style.css';
 
 const store = configureStore();
 
+/* Reducers all */
+store.subscribe(() => {
+  console.log(`State -> `, store.getState());
+});
+
 const jsx = (
   <Provider store={store}>
       <Routes />

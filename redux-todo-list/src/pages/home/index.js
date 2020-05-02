@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './style.css';
 
 import { connect } from 'react-redux';
-import { addTodo, toggleTodo } from '../../actions/index';
-import Form from '../../components/common/form/index';
-//import TodoList from '../../components/common/todo-list';
-//import Filter from '../../components/common/filter';
+import { addTodo, toggleTodo } from '../../actions/todo';
+import { setFilter } from '../../actions/filter';
+
+import Form from '../../components/common/form';
+import TodoList from '../../components/common/todo-list/index';
+import Filter from '../../components/common/filter';
 
 
 class HomeContainer extends Component {
@@ -14,6 +16,8 @@ class HomeContainer extends Component {
     super();
 
     this.handlerAddTodo = this.handlerAddTodo.bind(this);
+    this.handlerToggleTodo = this.handlerToggleTodo.bind(this);
+    this.handlerFilterTodo = this.handlerFilterTodo.bind(this);
   }
 
   handlerAddTodo(event) {
@@ -23,45 +27,29 @@ class HomeContainer extends Component {
     event.target.inputDataForm.value = '';
   }
 
-  handlerToggleTodo(id) {
+  handlerToggleTodo = (id) => (event) => {
+    event.preventDefault();
+
     this.props.dispatch(toggleTodo(id));
   }
 
+  handlerFilterTodo = (filter) => (event) => {
+    event.preventDefault();
+
+    this.props.dispatch(setFilter(filter));
+  }
+
   render() {
-    console.log(this.props)
-    const { todos } = this.props;
-
     return (
-      <div>
-        <Form handlerAddTodo={this.handlerAddTodo} />
+      <>
 
-        <ul>
-          {
-            todos.map((todo) => (
-              <li 
-                key={todo.id} style={{ textDecoration: todo.completed ? 'line-through' : 'none' }} 
-                onClick={() => this.handlerToggleTodo(todo.id)}>
-
-                { todo.text }
-              </li>
-            ))
-          }
-        </ul>
-
-        <div>
-          <h4>Show</h4>
-          <a href=''>All</a> | <a href=''>Finalized</a> | <a href=''>To do</a>
-        </div>
-      </div>
+        <Form handlerAddTodo={ this.handlerAddTodo } />
+        <TodoList handlerToggleTodo={ this.handlerToggleTodo } />
+        <Filter handlerFilter={ this.handlerFilterTodo } />
+        
+      </>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    todos: state.todo,
-    filters: state.filter
-  }
-}
-
-export default connect(mapStateToProps)(HomeContainer);
+export default connect()(HomeContainer);
