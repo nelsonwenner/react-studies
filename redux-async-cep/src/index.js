@@ -4,7 +4,6 @@ import configureStore from './store/configureStore'
 import { Provider } from 'react-redux';
 import Routes from './routes/routes';
 import './style.css';
-import 'milligram';
 
 const store = configureStore();
 
