@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
 import Spinner from 'react-spinkit';
 import 'milligram';
+
 
 const SearchCep = ({ address, city, district, state, code, status, handlerSubmit, isFaching, ok }) => {
   return (
@@ -55,9 +57,12 @@ const SearchCep = ({ address, city, district, state, code, status, handlerSubmit
 
         )
       }
-
     </div>
   )
 }
 
-export default SearchCep;
+const mapStateToProps = (state) => {
+  return state.address
+}
+
+export default connect(mapStateToProps)(SearchCep);

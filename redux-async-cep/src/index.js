@@ -7,10 +7,7 @@ import './style.css';
 
 const store = configureStore();
 
-/* Reducers all */
-store.subscribe(() => {
-  console.log(`State -> `, store.getState());
-});
+console.log(`initState -> `, store.getState());
 
 const jsx = (
   <Provider store={store}>
