@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
 
-import { connect } from 'react-redux';
-
 import SearchCep from '../../components/common/search-cep';
 import Api from '../../services/Api';
 
@@ -50,4 +48,4 @@ class HomeContainer extends Component {
   }
 }
 
-export default connect()(HomeContainer);
+export default HomeContainer;
