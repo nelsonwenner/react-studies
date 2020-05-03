@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './style.css';
 
+import SearchCep from '../../components/common/search-cep';
+import { fetchAddress } from '../../actions/addressAction';
+import NProgress from 'react-nprogress'
 import { connect } from 'react-redux';
-
-import SearchCep from '../../components/common/search-cep'
+import 'react-nprogress/nprogress.css';
 
 
 class HomeContainer extends Component {
@@ -12,10 +14,21 @@ class HomeContainer extends Component {
     super();
   }
 
+  handlerSubmit = (event) => {
+    event.preventDefault();
+    const { dispatch } = this.props;
+    
+    dispatch(fetchAddress(event.target.cep.value.toString()));
+  }
+
   render() {
     return (
       <div className="container" style={{ paddingTop: 120 }}>
-        <SearchCep />
+
+        <SearchCep
+          handlerSubmit={ this.handlerSubmit }  
+        />
+
       </div>
     )
   }
