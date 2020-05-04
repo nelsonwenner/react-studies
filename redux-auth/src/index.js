@@ -11,7 +11,7 @@ console.log(`initState -> `, store.getState());
 
 const jsx = (
   <Provider store={store}>
-      <Routes />
+    <Routes />
   </Provider>
 )
 
