@@ -10,6 +10,7 @@ import CustomInput from '../../components/common/CustomInput/index';
 import logo from '../../assets/logo.svg';
 import 'react-nprogress/nprogress.css';
 import { startLogin } from '../../actions/auth/index';
+import redirect from '../../routes/redirect';
 
 
 class Login extends Component {
@@ -44,11 +45,14 @@ class Login extends Component {
       .then(() => {
         this.onLoginSuccess();
         NProgress.done();
+        
+        redirect('/dashboard');
+        
       })
       .catch(() => this.onLoginFailure());
     }
   }
-
+  
   onLoginFailure() {
     this.setState({ loading: false, error: "Authentication failed" });
     NProgress.done();
@@ -121,6 +125,5 @@ class Login extends Component {
     )
   }
 }
-
 
 export default connect()(Login);
