@@ -1,10 +1,10 @@
 import Axios from 'axios';
 
-const ApiCep = Axios.create({
-    baseURL: `https://ws.apicep.com/busca-cep/api`,
+const ApiAuth = Axios.create({
+    baseURL: 'http://localhost:8000',
     headers: {
-        "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     }
 })
 
-export default { ApiCep };
+export default { ApiAuth };

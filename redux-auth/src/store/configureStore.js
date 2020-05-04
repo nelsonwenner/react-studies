@@ -1,13 +1,13 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 
-//import AddressReducer from '../reducers/addressReducer';
+import authReducer from '../reducers/authReducer';
 
 
 export default () => {
   return createStore(
     combineReducers({
-      
+      auth: authReducer
     }),
     applyMiddleware(logger, ReduxThunk)
   );
