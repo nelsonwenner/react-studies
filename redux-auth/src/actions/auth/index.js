@@ -2,6 +2,10 @@ import Api from '../../services/Api';
 import * as actions from './types';
 
 
+export const logout = () => ({ 
+  type: actions.LOGOUT
+});
+
 export const userData = (response) => ({ 
   type: actions.LOGIN, 
   payload: response

@@ -1,3 +1,6 @@
+import redirect from '../routes/redirect';
+
+
 export const addToken = (response) => {
   localStorage.setItem('currentUser', JSON.stringify(response));
   localStorage.setItem('token', JSON.stringify(response.token));
@@ -7,7 +10,7 @@ export const addToken = (response) => {
 export const removeTokenAndUser = () => {
   localStorage.removeItem('currentUser');
   localStorage.removeItem('token');
-  return true
+  redirect("/");
 }
 
 export const isAuth = () => {
